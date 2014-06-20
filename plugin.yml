@@ -1,0 +1,7 @@
+name: EffectSigns
+main: EffectSigns.EffectSigns
+version: 0.1
+description: >
+             EffectSigns! made by toaster and Gabe!
+commands:
+      es:
