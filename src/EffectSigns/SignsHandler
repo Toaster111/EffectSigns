@@ -1,0 +1,31 @@
+import org.bukkit.ChatColor;
+import org.bukkit.craftbukkit.Main;
+import org.bukkit.event.block.SignChangeEvent;
+import org.bukkit.plugin.Plugin;
+
+
+public class SignsHandler implements Listener{
+
+	private Plugin plugin;
+	public Main(Plugin instance){
+	plugin = instance;
+	}
+	
+@EventHandler
+public void onSignChange(SignChangeEvent e)
+{
+	if(e.getLine(0) != null && e.getLine(1) != null)
+	{
+		if(e.getLine(0).equalsIgnoreCase("[EffectSign]") || e.getLine(0).equalsIgnoreCase("[es]"))
+		{
+			String name = e.getLine(1);
+			e.setLine(0, ChatColor.RED + [EffectSign]);
+			plugin.getConfig().set("Signs." + name + ".x", e.getBlock().getLocation().getX());
+			plugin.getConfig().set("Signs." + name + ".y", e.getBlock().getLocation().getY());
+			plugin.getConfig().set("Signs." + name + ".z", e.getBlock().getLocation().getZ());
+			plugin.getConfig().set("Signs." + name + ".effect", null);
+		}
+	}
+}
+	
+}
