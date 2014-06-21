@@ -2,10 +2,13 @@ package EffectSigns;
 
 import java.util.logging.Logger;
 
+import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class EffectSigns extends JavaPlugin{
+public class EffectSigns extends JavaPlugin implements Listener{
 
 	public final Logger logger = Logger.getLogger("Minecraft");
 	public static EffectSigns plugin;
@@ -24,10 +27,10 @@ public class EffectSigns extends JavaPlugin{
 		final FileConfiguration config = this.getConfig();
 		PluginDescriptionFile pdfFile = this.getDescription();
 		this.logger.info(pdfFile.getName() +  " Has Been Enabled!");
+		Bukkit.getPluginManager().registerEvents(this, this);	
+		new SignHandler(this);
 		
-		//not sure if that will work check it for me vvv
-		getServer().getPluginManager().registerEvent(SignsHandler(), this);
-		
+
 		getCommand("es").setExecutor(new CommandHandler());
 	}
 
